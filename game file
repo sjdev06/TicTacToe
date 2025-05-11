@@ -90,7 +90,7 @@ def main():
                 print(f"Player {1 if result == 'X' else 2} ({result}) wins!")
 
             # Ask to play again
-            play_again = input("Kya aap wapis khelna pasand karenge (bikul bhai/rehne de yaar!))?").lower()
+            play_again = input("Kya aap wapis khelna pasand karenge (bikul bhai/rehne de yaar!)?").lower()
             if play_again != "biukul bhai":
                 print("Dhanyawad khelne ke liye!")
                 break
@@ -124,6 +124,9 @@ def main():
 
     # Keep track of the current player (X starts)
     current_player = 'X'
+
+
+
 
     # Game loop
     while True:
@@ -167,7 +170,7 @@ def main():
                 print(f"Player {1 if result == 'X' else 2} ({result}) wins!")
 
             # Ask to play again
-            play_again = input("Kya aap wapis khelna pasand karenge (bikul bhai/rehne de yaar!))? ").lower()
+            play_again = input("Kya aap wapis khelna pasand karenge (bikul bhai/rehne de yaar!)? ").lower()
             if play_again != "yes":
                 print("Thanks for playing!")
                 break
