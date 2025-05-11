@@ -1,0 +1,185 @@
+def print_board(board):
+    """initial state of the board"""
+    print("\n")
+    for i in range(3):
+        print(f" {board[i*3]} | {board[i*3+1]} | {board[i*3+2]} ")
+        if i < 2:
+            print("--------------")
+    print("\n")
+
+def check_winner(board):
+    """checking either a winner or a tie by evaluating on the rows columns and diagnols"""
+    #  diagonals
+    if board[0] == board[4] == board[8] and board[0] != ' ':
+        return board[0]
+    if board[2] == board[4] == board[6] and board[2] != ' ':
+        return board[2]
+    # columns
+    for i in range(3):
+        if board[i] == board[i+3] == board[i+6] and board[i] != ' ':
+            return board[i]
+    # rows
+    for i in range(0, 9, 3):
+        if board[i] == board[i+1] == board[i+2] and board[i] != ' ':
+            return board[i]
+# Check if the board is full (tie)
+    if ' ' not in board:
+        return "Tie"
+
+    # Game is still ongoing
+    return None
+
+def main():
+    # Initialize the board
+    board = [' ' for _ in range(9)]
+
+    # Game instructions
+    print("swagat hai aapka")
+    print("Player 1 is X and Player 2 is O")
+    print("Enter a number from 1-9 to place your mark:")
+    print("""
+ 1 | 2 | 3
+-----------
+ 4 | 5 | 6
+-----------
+ 7 | 8 | 9
+""")
+
+    # Keep track of the current player (X starts)
+    current_player = 'X'
+
+    # Game loop
+    while True:
+        # Print the current board
+        print_board(board)
+
+        # Get player input
+        print(f"Player {1 if current_player == 'X' else 2}'s turn ({current_player})")
+
+        # Get and validate player move
+        while True:
+            try:
+                position = int(input("Enter position (1-9): ")) - 1  # Adjust to 0-8 index
+
+                # Check if the position is valid
+                if position < 0 or position > 8:
+                    print("aukaat mai raho bhai , 1 se 9 ke bahar mat jao.")
+                    continue
+
+                # Check if the position is already taken
+                if board[position] != ' ':
+                    print("iss position pe already koi hai bhai , dusra choose karo.")
+                    continue
+
+                # Valid move
+                break
+
+            except ValueError:
+                print("1 se 9 ke beech mai number daalo bhai.")
+
+        # Place the mark on the board
+        board[position] = current_player
+
+        # Check for a winner or tie
+        result = check_winner(board)
+        if result:
+            print_board(board)
+            if result == "Tie":
+                print("tie hai bhai ")
+            else:
+                print(f"Player {1 if result == 'X' else 2} ({result}) wins!")
+
+            # Ask to play again
+            play_again = input("Kya aap wapis khelna pasand karenge (bikul bhai/rehne de yaar!))?").lower()
+            if play_again != "biukul bhai":
+                print("Dhanyawad khelne ke liye!")
+                break
+
+            # Reset the board
+            board = [' ' for _ in range(9)]
+            current_player = 'X'
+            continue
+        # Check if the board is full (tie)
+    if ' ' not in board:
+        return "Tie"
+
+    # Game is still ongoing
+    return None
+
+def main():
+    # Initialize the board
+    board = [' ' for _ in range(9)]
+
+    # Game instructions
+    print("Welcome to Tic Tac Toe!")
+    print("Player 1 is X and Player 2 is O")
+    print("Enter a number from 1-9 to place your mark:")
+    print("""
+ 1 | 2 | 3
+-----------
+ 4 | 5 | 6
+-----------
+ 7 | 8 | 9
+""")
+
+    # Keep track of the current player (X starts)
+    current_player = 'X'
+
+    # Game loop
+    while True:
+        # Print the current board
+        print_board(board)
+
+        # Get player input
+        print(f"Player {1 if current_player == 'X' else 2}'s turn ({current_player})")
+
+        # Get and validate player move
+        while True:
+            try:
+                position = int(input("Enter position (1-9): ")) - 1  # Adjust to 0-8 index
+
+                # Check if the position is valid
+                if position < 0 or position > 8:
+                    print("Position must be between 1 and 9. Try again.")
+                    continue
+
+                # Check if the position is already taken
+                if board[position] != ' ':
+                    print("That position is already taken. Try again.")
+                    continue
+
+                # Valid move
+                break
+
+            except ValueError:
+                print("Please enter a number between 1 and 9.")
+
+        # Place the mark on the board
+        board[position] = current_player
+
+        # Check for a winner or tie
+        result = check_winner(board)
+        if result:
+            print_board(board)
+            if result == "Tie":
+                print("The game is a tie!")
+            else:
+                print(f"Player {1 if result == 'X' else 2} ({result}) wins!")
+
+            # Ask to play again
+            play_again = input("Do you want to play again? (yes/no): ").lower()
+            if play_again != "yes":
+                print("Thanks for playing!")
+                break
+
+            # Reset the board
+            board = [' ' for _ in range(9)]
+            current_player = 'X'
+            continue
+
+        # Switch players
+        current_player = 'O' if current_player == 'X' else 'X'
+
+
+if __name__ == "__main__":
+    main()
