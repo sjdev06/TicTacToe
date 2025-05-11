@@ -140,19 +140,19 @@ def main():
 
                 # Check if the position is valid
                 if position < 0 or position > 8:
-                    print("Position must be between 1 and 9. Try again.")
+                    print("aukaat mai raho bhai , 1 se 9 ke bahar mat jao.")
                     continue
 
                 # Check if the position is already taken
                 if board[position] != ' ':
-                    print("That position is already taken. Try again.")
+                    print("iss position pe already koi hai bhai , dusra choose karo.")
                     continue
 
                 # Valid move
                 break
 
             except ValueError:
-                print("Please enter a number between 1 and 9.")
+                print("aukaat mai raho bhai , 1 se 9 ke bahar mat jao.")
 
         # Place the mark on the board
         board[position] = current_player
@@ -162,12 +162,12 @@ def main():
         if result:
             print_board(board)
             if result == "Tie":
-                print("The game is a tie!")
+                print("tie hai bhai ")
             else:
                 print(f"Player {1 if result == 'X' else 2} ({result}) wins!")
 
             # Ask to play again
-            play_again = input("Do you want to play again? (yes/no): ").lower()
+            play_again = input("Kya aap wapis khelna pasand karenge (bikul bhai/rehne de yaar!))? ").lower()
             if play_again != "yes":
                 print("Thanks for playing!")
                 break
